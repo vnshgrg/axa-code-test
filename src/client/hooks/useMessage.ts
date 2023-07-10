@@ -1,5 +1,6 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
 import React, { useState } from "react";
+import { environment } from "../../server/utils";
 
 interface ApiResponse {
   result: boolean;
@@ -33,7 +34,9 @@ export const useMessage = () => {
 
       console.log(message, username);
 
-      const apiUrl = `http://localhost:3000/api/message`;
+      const apiUrl = `${environment.app_domain}/api/message`;
+
+      console.log(apiUrl);
       const { data } = await axios.post<ApiResponse>(apiUrl, {
         username,
         message,

@@ -1,6 +1,3 @@
-import * as dotenv from "dotenv";
-dotenv.config({ path: __dirname + "/./../.env" });
-
 interface Environment {
   smtp_host: string;
   smtp_port: number;
@@ -12,6 +9,7 @@ interface Environment {
   axa_users: string;
   allowed_max_age: number;
   app_port: number;
+  app_domain: string;
 }
 
 export const environment: Environment = {
@@ -24,5 +22,6 @@ export const environment: Environment = {
   axa_user_profiles: process.env.AXA_USER_PROFILES!,
   axa_users: process.env.AXA_USERS!,
   allowed_max_age: parseInt(process.env.ALLOWED_MAX_AGE || "10"),
-  app_port: parseInt(process.env.APP_PORT || "3000"),
+  app_port: parseInt(process.env.PORT || "3000"),
+  app_domain: process.env.PROJECT_DOMAIN || `localhost:3000`,
 };

@@ -1,7 +1,5 @@
 import { emailDB } from "./emailDB";
 import { mailerTransporter } from "./smtp";
-import * as dotenv from "dotenv";
-dotenv.config({ path: __dirname + "/./../.env" });
 
 export const sendEmail = async (id: string) => {
   try {
