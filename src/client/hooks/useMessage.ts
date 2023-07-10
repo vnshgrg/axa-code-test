@@ -34,7 +34,7 @@ export const useMessage = () => {
 
       console.log(message, username);
 
-      const apiUrl = `${environment.app_domain}/api/message`;
+      const apiUrl = `https://${environment.app_name}.glitch.me/api/message`;
 
       console.log(apiUrl);
       const { data } = await axios.post<ApiResponse>(apiUrl, {
