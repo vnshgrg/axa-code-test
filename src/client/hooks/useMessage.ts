@@ -30,6 +30,7 @@ export const useMessage = () => {
 
       setLoading(true);
       setError(null);
+      setResult(null);
 
       const { data } = await axios.post<ApiResponse>(`/api/message`, {
         username,
@@ -61,6 +62,7 @@ export const useMessage = () => {
         return;
     }
   };
+
   return {
     loading,
     error,

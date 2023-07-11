@@ -1,3 +1,4 @@
+import { Log } from "../utils";
 import { emailDB } from "./emailDB";
 import { mailerTransporter } from "./smtp";
 
@@ -17,9 +18,10 @@ export const sendEmail = async (id: string) => {
       subject: subject,
       text: body,
     });
-    console.log("Email sent:", info.messageId);
+
+    Log("Email sent:", info.messageId);
     return id;
   } catch (error) {
-    console.error("Error sending email:", error);
+    Log("Error sending email:", error);
   }
 };

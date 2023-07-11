@@ -1,8 +1,8 @@
-import * as express from "express";
-import * as bodyParser from "body-parser";
+import express from "express";
+import bodyParser from "body-parser";
 
 import { messageRouter } from "./routes/messageRoute";
-import { cronJob, environment } from "./utils";
+import { Log, cronJob, environment } from "./utils";
 import { processEmails } from "./email/processEmails";
 
 const app = express();
@@ -17,4 +17,4 @@ cronJob(async () => {
 }, 15 * 1000); // runs every 15 seconds
 
 const port = environment.app_port || 3000;
-app.listen(port, () => console.log(`Server listening on port: ${port}`));
+app.listen(port, () => Log(`Server listening on port: ${port}`));

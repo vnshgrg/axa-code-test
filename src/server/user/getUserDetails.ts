@@ -1,5 +1,6 @@
 import { AxiosError } from "axios";
 import { UserDetail, getUserDetails } from "../service/api";
+import { Log } from "../utils";
 
 export const userDetails = async (id: string): Promise<UserDetail | null> => {
   try {
@@ -8,7 +9,7 @@ export const userDetails = async (id: string): Promise<UserDetail | null> => {
     const user = users.find((user) => user.userUid === id) || null;
     return user;
   } catch (err) {
-    console.log("There was an error");
+    Log("There was an error");
     const error = err as AxiosError;
     throw error.message || "An error occurred";
   }

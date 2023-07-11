@@ -1,6 +1,6 @@
 import * as express from "express";
 import { login, userDetails as getUserDetails } from "../user";
-import { ageChecker } from "../utils";
+import { Log, ageChecker } from "../utils";
 import { emailDB } from "../email/emailDB";
 
 const router = express.Router();
@@ -75,7 +75,7 @@ Wish for Christmas: ${message}
       message: "Your message have been sent to Santa.",
     });
   } catch (error) {
-    console.log(error);
+    Log(error);
     res.status(500).json({
       result: false,
       error: "internal-server-error",

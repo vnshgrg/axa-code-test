@@ -1,4 +1,4 @@
-import { generateUniqueId } from "../utils";
+import { Log, generateUniqueId } from "../utils";
 
 type EmailStatus = "pending" | "sent";
 
@@ -16,7 +16,7 @@ export interface EmailInput {
   subject: string;
 }
 
-class EmailDatabase {
+export class EmailDatabase {
   private emailDatabase: Email[];
   private isProcessing: boolean;
 
@@ -31,7 +31,7 @@ class EmailDatabase {
 
   getPendingEmails(): Email[] {
     if (this.isProcessing) {
-      console.log("[RETURNING EMPTY AS EMAIL IS STILL BEING PROCESSED]");
+      Log("[RETURNING EMPTY AS EMAIL IS STILL BEING PROCESSED]");
       return [];
     }
     return this.emailDatabase.filter((email) => email.status === "pending");
@@ -51,7 +51,7 @@ class EmailDatabase {
     };
 
     this.emailDatabase.push(email);
-    console.log(`[ADDED EMAIL TO DB] ${email.id}`);
+    Log(`[ADDED EMAIL TO DB] ${email.id}`);
     return email.id;
   }
 
@@ -59,16 +59,16 @@ class EmailDatabase {
     this.emailDatabase = this.emailDatabase.map((email) =>
       email.id === id ? { ...email, status: "sent", sentAt: new Date() } : email
     );
-    console.log(`[MARKED AS SENT] ${id}`);
+    Log(`[MARKED AS SENT] ${id}`);
   }
 
   lock(): void {
     this.isProcessing = true;
-    console.log(`[DB LOCKED]`);
+    Log(`[DB LOCKED]`);
   }
   unlock(): void {
     this.isProcessing = false;
-    console.log(`[DB UNLOCKED]`);
+    Log(`[DB UNLOCKED]`);
   }
 }
 

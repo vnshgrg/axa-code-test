@@ -1,3 +1,4 @@
+import { Log } from "../utils";
 import { emailDB } from "./emailDB";
 import { sendEmail } from "./sendEmail";
 
@@ -5,7 +6,7 @@ export const processEmails = async () => {
   try {
     const emails = emailDB.getPendingEmails();
     if (emails.length === 0) {
-      console.log("No pending emails to send.");
+      Log("No pending emails to send.");
       return;
     }
 
@@ -16,14 +17,14 @@ export const processEmails = async () => {
     // there are some limitations with making bulk async requests at once
     for (const email of emails) {
       const { id, subject } = email;
-      console.log(`Sending: ${subject}`);
+      Log(`Sending: ${id} - ${subject}`);
       await sendEmail(id);
       emailDB.markEmailAsSent(id);
     }
     // unlocking
     emailDB.unlock();
   } catch (error) {
-    console.log(error);
+    Log(error);
     emailDB.unlock();
   }
 };
