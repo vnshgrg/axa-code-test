@@ -10,15 +10,97 @@ $dark: #343a40;
 
 // Then add them to your custom theme-colors map, together with any additional colors you might need
 $theme-colors: (
-	primary: $primary,
-	secondary: $secondary,
-	success: $success,
-	info: $info,
-	warning: $warning,
-	danger: $danger,
-	light: $light,
-	dark: $dark,
-	// add any additional color below
+  primary: $primary,
+  secondary: $secondary,
+  success: $success,
+  info: $info,
+  warning: $warning,
+  danger: $danger,
+  light: $light,
+  dark: $dark,
+  // add any additional color below
 );
 
-@import '../../../node_modules/bootstrap/scss/bootstrap.scss';
+@import "../../../node_modules/bootstrap/scss/bootstrap.scss";
+
+body {
+  margin: 18px;
+  background-color: $light;
+}
+
+h1 {
+  color: $primary;
+}
+
+header,
+footer {
+  color: $dark;
+  text-align: center;
+}
+
+footer {
+  margin-top: 24px;
+}
+
+div#container {
+  width: 436px;
+  padding: 16px 18px;
+  background-color: #ffffff;
+  margin: 36px auto;
+  border-radius: 16px;
+}
+
+div.formField {
+  margin-top: 16px;
+}
+div.formField p {
+  margin-bottom: 8px;
+}
+div.formField p label {
+  font-weight: 500;
+  color: $dark;
+}
+
+input,
+textarea {
+  border: 1px solid;
+  border-color: #cccccc;
+  width: 400px;
+  border-radius: 8px;
+  padding: 6px 12px;
+}
+
+button {
+  padding: 8px 12px;
+  outline: none;
+  border: none;
+  background-color: $primary;
+  color: $light;
+  border-radius: 8px;
+  width: 100%;
+}
+
+button:hover {
+  background-color: $dark;
+}
+
+button:disabled {
+  opacity: 0.5;
+  background-color: $dark;
+}
+
+.error,
+.result {
+  color: #ffffff;
+  margin-top: 16px;
+  padding: 8px 16px;
+  border-radius: 8px;
+}
+
+.error {
+  background-color: $danger;
+}
+
+.result {
+  background-color: $success;
+}

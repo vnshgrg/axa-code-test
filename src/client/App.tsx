@@ -14,57 +14,58 @@ const App = (props: AppProps) => {
   } = useMessage();
 
   return (
-    <>
+    <div id="container">
       <header>
         <h1>A letter to Santa</h1>
+        <p>Ho ho ho, what you want for Christmas?</p>
       </header>
 
       <main>
-        <p className="bold">Ho ho ho, what you want for Christmas?</p>
-        who are you?
-        <input
-          name="userid"
-          value={username}
-          placeholder="charlie.brown"
-          onChange={(event) => {
-            onTextChange("username", event.target.value);
-          }}
-          disabled={loading}
-        />
+        {error && <div className="error">{error}</div>}
+        {result && <div className="result">{result}</div>}
         <form onSubmit={sendMessage}>
-          what do you want for christmas?
-          <textarea
-            value={message}
-            name="wish"
-            rows={10}
-            cols={45}
-            maxLength={100}
-            placeholder="Gifts!"
-            onChange={(event) => {
-              onTextChange("message", event.target.value);
-            }}
-            disabled={loading}
-          />
-          <br />
-          <button type="submit" id="submit-letter" disabled={loading}>
-            Send
-          </button>
+          <div className="formField">
+            <p>
+              <label htmlFor="userid">who are you?</label>
+            </p>
+            <input
+              id="userid"
+              name="userid"
+              value={username}
+              placeholder="charlie.brown"
+              onChange={(event) => {
+                onTextChange("username", event.target.value);
+              }}
+              disabled={loading}
+            />
+          </div>
+          <div className="formField">
+            <p>
+              <label htmlFor="wish">what do you want for christmas?</label>
+            </p>
+            <textarea
+              value={message}
+              id="wish"
+              name="wish"
+              rows={10}
+              cols={45}
+              maxLength={100}
+              placeholder="Gifts!"
+              onChange={(event) => {
+                onTextChange("message", event.target.value);
+              }}
+              disabled={loading}
+            />
+          </div>
+          <div className="formField">
+            <button type="submit" id="submit-letter" disabled={loading}>
+              {loading ? "Sending your wish to Santa..." : "Send to Santa"}
+            </button>
+          </div>
         </form>
       </main>
-
-      <p>
-        Username: {username}
-        <br />
-        Message: {message}
-        <br />
-        <br />
-        Error: {error}
-        <br />
-        Result: {result}
-      </p>
-
-      <footer>Made with &heart; in Tokyo</footer>
-    </>
+      <footer>Made with &hearts; in Tokyo</footer>
+    </div>
   );
 };
 
