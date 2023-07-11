@@ -69,7 +69,11 @@ Wish for Christmas: ${message}
 `,
     });
 
-    res.json({ ...user, ...userDetails });
+    res.json({
+      result: true,
+      error: null,
+      message: "Your message have been sent to Santa.",
+    });
   } catch (error) {
     console.log(error);
     res.status(500).json({

@@ -1,6 +1,7 @@
 const path = require("path");
 const nodeExternals = require("webpack-node-externals");
 const Dotenv = require("dotenv-webpack");
+const CopyPlugin = require("copy-webpack-plugin");
 
 const serverConfig = {
   mode: process.env.NODE_ENV || "development",
@@ -59,7 +60,12 @@ const clientConfig = {
     filename: "app.js",
     path: path.resolve(__dirname, "public/js"),
   },
-  plugins: [new Dotenv()],
+  plugins: [
+    new CopyWebpackPlugin({
+      patterns: [{ from: "./public/index.html", to: "../" }],
+    }),
+    new Dotenv(),
+  ],
 };
 
 module.exports = [serverConfig, clientConfig];
