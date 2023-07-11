@@ -1,7 +1,7 @@
 const path = require("path");
 const nodeExternals = require("webpack-node-externals");
 const Dotenv = require("dotenv-webpack");
-const CopyPlugin = require("copy-webpack-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 const serverConfig = {
   mode: process.env.NODE_ENV || "development",
